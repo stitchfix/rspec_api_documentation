@@ -3,14 +3,13 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = "rspec_api_documentation"
-  s.version     = "6.1.0"
+  s.version     = StitchFix::Rspec_api_documentation::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Chris Cahoon", "Sam Goldman", "Eric Oestrich"]
-  s.email       = ["chris@smartlogicsolutions.com", "sam@smartlogicsolutions.com", "eric@smartlogicsolutions.com"]
+  s.authors     = ['Stitch Fix Engineering']
+  s.email       = ['eng@stitchfix.com']
   s.summary     = "A double black belt for your docs"
   s.description = "Generate API docs from your test suite"
-  s.homepage    = "http://smartlogicsolutions.com"
-  s.license     = "MIT"
+  s.homepage    = "https://github.com/stitchfix/rspec_api_documentation"
 
   s.required_rubygems_version = ">= 1.3.6"
 
@@ -38,6 +37,14 @@ Gem::Specification.new do |s|
   s.add_development_dependency "multi_json", "~> 1.11.2"
   s.add_development_dependency "rspec", "~> 3.4.0"
 
-  s.files        = Dir.glob("lib/**/*") + Dir.glob("templates/**/*")
-  s.require_path = "lib"
+  # DO NOT change these double quotes to single quotes
+  # Ruby interprets '\n' as a string literal not a newline character
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
+  s.add_development_dependency("stitchfix-y")
+  s.add_development_dependency("rake")
+  s.add_development_dependency("rspec")
+  s.add_development_dependency("rspec_junit_formatter")
 end
