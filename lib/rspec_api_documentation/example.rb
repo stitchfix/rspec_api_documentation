@@ -55,7 +55,7 @@ module RspecApiDocumentation
     end
 
     def requests
-      filter_headers(metadata[:requests]) || []
+      filter_headers(metadata.fetch(:requests, []))
     end
 
     private
