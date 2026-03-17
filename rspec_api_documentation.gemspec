@@ -40,4 +40,5 @@ Gem::Specification.new do |s|
 
   s.files        = Dir.glob("lib/**/*") + Dir.glob("templates/**/*")
   s.require_path = "lib"
+  s.add_development_dependency('rspec_junit_formatter')
 end
